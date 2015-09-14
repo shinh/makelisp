@@ -1,5 +1,5 @@
 MakeLisp
-=======
+========
 
 Lisp implementation in GNU make
 
@@ -43,7 +43,7 @@ How to Use
     500
 
 Note ^D in the above means you should type Ctrl + d. Lines followed by
-^D are expected output, so you should not need to type them.
+the ^D are expected output, so you should not need to type them.
 
 
 Builtin Functions
@@ -78,13 +78,13 @@ FizzBuzz:
 
     $ cat fizzbuzz.l | make -f makelisp.mk
     (lambda (n) (if (eq n 101) nil (if (print (if (eq (mod n 15) 0) FizzBuzz (if (eq (mod n 5) 0) Buzz (if (eq (mod n 3) 0) Fizz n)))) (fizzbuzz (+ n 1)) nil)))
-    1
-    2
-    Fizz
+    PRINT:   1
+    PRINT:   2
+    PRINT:   Fizz
     ...
-    98
-    Fizz
-    Buzz
+    PRINT:   98
+    PRINT:   Fizz
+    PRINT:   Buzz
     nil
 
 Sort:
@@ -114,9 +114,9 @@ Lisp. You can run the FizzBuzz program like:
 
     $ ./evalify.rb fizzbuzz.l | make -f makelisp.mk
     ...
-    1
-    2
-    Fizz
+    PRINT:   1
+    PRINT:   2
+    PRINT:   Fizz
 
 This takes very long time. I'm not sure if this will finish. You can
 use [kati](https://github.com/google/kati) for a faster execution
@@ -124,7 +124,7 @@ use [kati](https://github.com/google/kati) for a faster execution
 
     $ git clone https://github.com/google/kati
     $ make -C kati -j8
-    $ ulimit -s 40960  # Need a fairly big stack.
+    $ ulimit -s 40960  # You need a fairly big stack.
     $ ./evalify.rb fizzbuzz.l | time ./kati/ckati -f makelisp.mk
 
 Though makelisp.mk does not support defmacro, eval.l also defines
@@ -173,3 +173,10 @@ Limitations
 
 There should be a lot of limitations. beflisp behaves very strangely
 when you pass a broken Lisp code.
+
+
+See also
+--------
+
+* [Lisp in sed](https://github.com/shinh/sedlisp)
+* [Lisp in Befunge](https://github.com/shinh/beflisp)
