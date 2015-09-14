@@ -7,9 +7,11 @@ Lisp implementation in GNU make
 is a Lisp interpreter in GNU make.
 
 GNU make has two builtin functions, $(shell) and $(guile), which make
-the implementation less interesting. MakeLisp does not use either of
-them, except a single $(shell cat /dev/stdin) function call to make it
-easier for users to pass Lisp programs to MakeLisp.
+the implementation less interesting. For example, GNU make lacks
+arithmetic operations, but you can easily add two numbers by
+$(shell expr 3 + 4) or $(guile (+ 3 4)). So, makelisp does not use
+either of them, except a single $(shell cat /dev/stdin) function call
+to make it easier for users to pass Lisp programs to makelisp.
 
 
 How to Use
@@ -171,7 +173,7 @@ results. You can run the test with evalify.rb by passing -e:
 Limitations
 -----------
 
-There should be a lot of limitations. beflisp behaves very strangely
+There should be a lot of limitations. makelisp behaves very strangely
 when you pass a broken Lisp code.
 
 
